@@ -1,0 +1,4 @@
+<p class="text-right">
+  <span class="badge badge-secondary">Poslednja promena: {{ (lastUpdate | async) | date:'mediumTime' }}</span>
+</p>
+<button class="btn btn-primary" (click)="clearRecepti()">Obrisi sve recepte</button>

@@ -1,0 +1,66 @@
+<br />
+<hr>
+<h6>Napisite novi recept</h6>
+<form (ngSubmit)="onSubmit()" #receptForm="ngForm">
+  <div class="form-row">
+    <div class="col-4">
+      <textarea 
+      type="text" 
+      class="form-control" 
+      placeholder="Naziv recepta" 
+      id="opis" 
+      [(ngModel)]="model.opis" 
+      name="opis" 
+      #opis="ngModel"
+      rows="3">
+      </textarea>
+    </div>
+    <div class="col-4">
+      <textarea 
+      type="text" 
+      class="form-control" 
+      placeholder="Nacin pripreme" 
+      id="priprema" 
+      [(ngModel)]="model.priprema" 
+      name="priprema" 
+      #priprema="ngModel" 
+      rows="3"></textarea>
+    </div>
+    <div class="col-2">
+      <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Potrebno vreme" 
+      id="vreme" 
+      [(ngModel)]="model.vreme" 
+      name="vreme" 
+      #vreme="ngModel">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Kreiraj</button>
+    </div>
+  </div>
+</form>
+<br />
+<h6>Lista recepata:</h6>
+<div *ngIf="(recepti | async)?.length!=0">
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>#</th>
+        <th>Recept</th>
+        <th>Nacin pripreme</th>
+        <th>Potrebno vreme</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of recepti | async">
+        <td><span>{{r.id}}</span></td>
+        <td><span>{{r.opis}}</span></td>
+        <td><span>{{r.priprema}}</span></td>
+        <td><span>{{r.vreme}}</span></td>
+        <td><button class="btn btn-primary" (click)="removeRecept(r)">Obrisi</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
